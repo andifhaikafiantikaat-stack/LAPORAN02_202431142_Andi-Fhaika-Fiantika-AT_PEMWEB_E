@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAPORAN PRAKTIKUM - Pemrograman Web</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+</head>
+<body>
+
+    <button id="modeToggle" class="mode-toggle">Mode Saat Ini: Rapi</button>
+    <div class="container">
+        <h1>LAPORAN PRAKTIKUM</h1>
+        <h2> Andi Fhaika Fiantika AT | 202431142</h2>
+
+        <div class="content-section">
+            <div class="question-block">
+                <h3 onclick="toggleContent(this)">a. Mengapa menggunakan CSS dan JavaScript dalam pemrograman web modern?</h3>
+                <div class="content">
+                    <p>Dalam pemrograman web modern, **HTML** (HyperText Markup Language) berfungsi sebagai tulang punggung untuk struktur dan konten. Namun, dua teknologi lainnya sangat penting untuk menciptakan pengalaman pengguna yang memuaskan:</p>
+                    <ul>
+                        <li><strong>CSS (Cascading Style Sheets):</strong> Digunakan untuk mengontrol **penyajian (presentasi)** visual halaman web, termasuk tata letak, warna, tipografi, dan responsivitas. Tanpa CSS, halaman web akan terlihat polos dan tidak menarik. CSS memisahkan desain dari struktur, membuat kode lebih bersih dan mudah dikelola.</li>
+                        <li><strong>JavaScript (JS):</strong> Digunakan untuk menambahkan **perilaku (behavior)** dan **interaktivitas** pada halaman web. JS memungkinkan adanya fitur dinamis seperti validasi formulir, manipulasi DOM (Document Object Model) untuk mengubah konten secara real-time, animasi kompleks, dan komunikasi asinkron dengan server (misalnya, AJAX/Fetch API).</li>
+                    </ul>
+                    <p>Kombinasi ketiganya (HTML, CSS, JS) dikenal sebagai **Tumpukan Standar Web**, yang memungkinkan pembuatan aplikasi web yang kaya fitur, indah, dan responsif.</p>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 onclick="toggleContent(this)">b. Jelaskan konsep dan tujuan utama dari Responsive Web Design (RWD)!</h3>
+                <div class="content">
+                    <p><strong>Responsive Web Design (RWD)</strong> adalah pendekatan dalam desain dan pengembangan web yang bertujuan untuk membuat situs web merespons dan beradaptasi dengan lingkungan penggunanya—terutama ukuran layar, orientasi, dan platform—menggunakan tata letak yang fleksibel (fluid grid), gambar yang fleksibel (fluid image), dan kueri media (media queries) CSS.</p>
+                    <p>Tujuan utama RWD adalah:</p>
+                    <ul>
+                        <li>**Konsistensi Pengalaman Pengguna (UX):** Memastikan situs dapat digunakan dan terlihat bagus di semua perangkat, mulai dari layar desktop besar hingga smartphone kecil, tanpa perlu membuat versi situs terpisah.</li>
+                        <li>**Masa Depan:** Memastikan situs tetap berfungsi dengan baik meskipun ada perangkat baru dengan ukuran layar yang tidak terduga.</li>
+                        <li>**SEO (Search Engine Optimization):** Google merekomendasikan RWD sebagai praktik terbaik karena lebih efisien bagi mesin pencari untuk merayapi dan mengindeks satu URL per konten.</li>
+                        <li>**Efisiensi Pengembangan:** Lebih mudah dikelola dan dipelihara karena hanya ada satu basis kode untuk semua perangkat.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 onclick="toggleContent(this)">c. Bagaimana kombinasi CSS, JavaScript, dan prinsip RWD dapat menghasilkan tampilan web yang interaktif sekaligus adaptif? Jelaskan bagaimana ketiganya saling melengkapi!</h3>
+                <div class="content">
+                    <p>Kombinasi ketiganya menciptakan pengalaman web modern yang lengkap:</p>
+                    <ul>
+                        <li><strong>CSS dan RWD (Adaptif):</strong> CSS, khususnya melalui **Media Queries**, adalah inti dari adaptasi. RWD menggunakan kueri media untuk menerapkan gaya (CSS) yang berbeda berdasarkan karakteristik perangkat (lebar layar, resolusi, dll.). Ini memastikan tata letak dan ukuran font menyesuaikan diri secara mulus di berbagai perangkat.</li>
+                        <li><strong>JavaScript (Interaktif):</strong> JS menambahkan fungsionalitas dan interaktivitas. Contoh: animasi saat gulir (scroll), validasi input, atau fitur yang ada di praktikum ini: menyembunyikan/menampilkan konten saat diklik.</li>
+                        <li><strong>Saling Melengkapi:</strong>
+                            <ul>
+                                <li>**Interaktivitas Adaptif:** JS dapat mendeteksi lebar layar dan memicu perubahan yang lebih kompleks daripada yang dapat dilakukan CSS murni (misalnya, memuat data yang berbeda atau mengubah struktur DOM).</li>
+                                <li>**Transisi CSS dalam Interaktivitas JS:** Ketika JS mengubah properti seperti kelas (`.hidden`) untuk menyembunyikan elemen, CSS dengan properti `transition` memastikan perubahan tersebut (misalnya, menghilang) terjadi secara halus dan visual yang nyaman, bukan perubahan yang tiba-tiba.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div> </div> <script>
+        /*
+        ======================================================================
+        2. INTERAKTIVITAS MENGGUNAKAN JAVASCRIPT (TETAP DI SINI)
+        ======================================================================
+        */
+
+        // Fungsi Toggle Content
+        function toggleContent(headerElement) {
+            const contentElement = headerElement.nextElementSibling;
+
+            if (contentElement && contentElement.classList.contains('content')) {
+                const konfirmasi = confirm('Apakah Anda yakin ingin MENYEMBUNYIKAN konten di bawah subjudul ini?');
+
+                if (konfirmasi) {
+                    contentElement.classList.add('hidden');
+                } else {
+                    contentElement.classList.remove('hidden');
+                }
+            }
+        }
+
+        // Fungsi Toggle Mode (Rapi vs. Berantakan)
+        document.addEventListener('DOMContentLoaded', () => {
+            const modeToggle = document.getElementById('modeToggle');
+            const body = document.body;
+            let isMessy = false;
+
+            modeToggle.addEventListener('click', () => {
+                isMessy = !isMessy; 
+                
+                if (isMessy) {
+                    body.classList.add('messy-mode');
+                    modeToggle.textContent = 'Mode Saat Ini: Berantakan';
+                } else {
+                    body.classList.remove('messy-mode');
+                    modeToggle.textContent = 'Mode Saat Ini: Rapi';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

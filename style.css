@@ -1,0 +1,245 @@
+/*
+======================================================================
+3. DESAIN TAMPILAN MENGGUNAKAN CSS (Mode Rapi)
+======================================================================
+*/
+:root {
+    /* Definisi Variabel CSS untuk Mode Rapi */
+    --rapi-bg: #f4f4f9;
+    --rapi-text: #333;
+    --rapi-primary: #007bff;
+    --rapi-secondary: #6c757d;
+    --rapi-border: #ccc;
+    --rapi-padding: 20px;
+    --rapi-font: 'Helvetica Neue', Arial, sans-serif;
+    --rapi-line-height: 1.6;
+}
+
+body {
+    font-family: var(--rapi-font);
+    color: var(--rapi-text);
+    background-color: var(--rapi-bg);
+    margin: 0;
+    line-height: var(--rapi-line-height);
+    transition: all 0.5s ease; /* Transisi untuk perubahan mode */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--rapi-padding);
+}
+
+/* Pengaturan Layout dengan Flexbox */
+.content-section {
+    display: flex;
+    flex-wrap: wrap; /* Memastikan kolom turun ke bawah saat layar kecil */
+    gap: var(--rapi-padding);
+    margin-top: 20px;
+}
+
+.question-block {
+    flex: 1 1 300px; /* Fleksibel, minimal lebar 300px */
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--rapi-primary);
+    transition: all 0.3s ease; /* Transisi sederhana */
+}
+
+.question-block:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    color: var(--rapi-primary);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--rapi-border);
+}
+
+h2 {
+    text-align: center;
+    color: var(--rapi-secondary);
+    margin-bottom: 30px;
+}
+
+h3 {
+    cursor: pointer; /* Menandakan elemen dapat diklik */
+    color: var(--rapi-primary);
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed var(--rapi-border);
+    transition: color 0.3s ease;
+}
+
+h3:hover {
+    color: var(--rapi-secondary);
+}
+
+/* Tombol Mode */
+.mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    padding: 10px 15px;
+    background-color: var(--rapi-primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mode-toggle:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Konten yang disembunyikan */
+.content {
+    overflow: hidden;
+    transition: height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 1;
+    height: auto; /* Awalnya auto, diubah oleh JS saat disembunyikan */
+}
+.content.hidden {
+    height: 0 !important;
+    opacity: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+
+/*
+======================================================================
+3. DESAIN TAMPILAN MENGGUNAKAN CSS (Mode Berantakan)
+======================================================================
+*/
+body.messy-mode {
+    background-color: #ff00ff; /* Pink mencolok */
+    color: #00ff00; /* Hijau neon */
+    font-family: 'Comic Sans MS', cursive; /* Font tidak serius */
+    line-height: 0.8; /* Terlalu rapat */
+    padding: 50px 10px 10px 50px; /* Padding acak */
+}
+
+.messy-mode .container {
+    max-width: 800px;
+    margin: 50px 20px;
+    padding: 5px;
+    border: 5px dotted #ffff00; /* Border mencolok */
+}
+
+.messy-mode .content-section {
+    display: block; /* Layout acak, tidak fleksibel */
+    gap: 5px;
+}
+
+.messy-mode .question-block {
+    background-color: #ffff00; /* Kuning mencolok */
+    padding: 50px 5px; /* Padding tidak proporsional */
+    border-radius: 0;
+    box-shadow: 10px 10px 0 #ff0000; /* Shadow berlebihan */
+    margin-bottom: 30px;
+    border-left: none;
+    text-align: right;
+    transform: rotate(2deg); /* Rotasi acak */
+}
+
+.messy-mode h1 {
+    color: #0000ff;
+    font-size: 50pt; /* Ukuran tidak proporsional */
+    text-align: left;
+    border-bottom: 10px groove #ff0000;
+}
+
+.messy-mode h2 {
+    color: #ff0000;
+    font-size: 10px; /* Terlalu kecil */
+    text-align: right;
+    margin-bottom: 100px;
+}
+
+.messy-mode h3 {
+    color: #000000;
+    font-size: 20px;
+    background-color: #00ff00;
+    padding: 20px;
+    border: 5px solid #ff00ff;
+    text-decoration: underline wavy #ff0000;
+}
+
+.messy-mode p {
+    font-size: 18pt; /* Ukuran tidak proporsional */
+}
+
+/*
+======================================================================
+4. RESPONSIVITAS DENGAN RWD (MEDIA QUERIES)
+======================================================================
+*/
+
+/* LAYAR DESKTOP (≥1024px): 2 Kolom (Default di mode Rapi) */
+@media (min-width: 1024px) {
+     .question-block {
+        flex: 1 1 45%; /* Menampilkan 2 kolom dengan lebar masing-masing ~45% */
+    }
+}
+
+
+/* LAYAR TABLET (600px – 1023px): 1 Kolom, Teks Menengah */
+@media (min-width: 600px) and (max-width: 1023px) {
+    body {
+        font-size: 18px; /* Ukuran teks menengah */
+    }
+    .content-section {
+        flex-direction: column; /* Ubah menjadi 1 kolom */
+        gap: 15px;
+    }
+    .question-block {
+        flex: 1 1 100%;
+        padding: 20px;
+    }
+    .mode-toggle {
+        padding: 8px 12px;
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+    }
+}
+
+/* LAYAR SMARTPHONE (≤599px): 1 Kolom, Teks/Tombol Diperbesar */
+@media (max-width: 599px) {
+    body {
+        font-size: 20px; /* Ukuran teks diperbesar */
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    h2 {
+        font-size: 1.2em;
+    }
+    .content-section {
+        flex-direction: column; /* Ubah menjadi 1 kolom */
+        gap: 10px;
+    }
+    .question-block {
+        flex: 1 1 100%;
+        padding: 15px;
+    }
+    .mode-toggle {
+        padding: 15px 20px; /* Tombol diperbesar agar mudah disentuh */
+        top: 10px;
+        right: 10px;
+        font-size: 16px;
+        width: calc(100% - 40px);
+        position: static; /* Ubah posisi agar di atas konten */
+        margin-bottom: 20px;
+    }
+}
